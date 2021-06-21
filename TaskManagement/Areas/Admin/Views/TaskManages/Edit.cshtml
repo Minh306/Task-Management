@@ -1,0 +1,482 @@
+﻿@model TaskManagement.Models.TaskManage
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+    var Parent = (ViewBag.ParentTask as TaskManagement.Areas.Admin.Models.SubTask);
+}
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+@using (Html.BeginForm("Edit", "TaskManages", FormMethod.Post, new { enctype = "multipart/form-data", @id = "formSubmit", @class = "form-horizontal", role = "form" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.CreatedDate)
+    @Html.HiddenFor(model => model.CreatedBy)
+    <input type="hidden" id="taskEditId" value="@Model.Id" />
+    @Html.AntiForgeryToken()
+    <div class="container-fluid">
+        <div class="tabel_center">
+            <div class="header" style="border-left: solid 5px purple;padding-left: 1em">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-2">
+                            <label for="" style="font-size:25px;">Tên nhiệm vụ:</label>
+                        </div>
+
+                        <div class="col-4" style="font-size: 30px;">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-6" style="float:right;">
+                            <button type="submit" class="btn btn-outline-primary " id="btnCreate" value="Create">Cập nhật</button>
+                            @Html.ActionLink("Tạo Subtask", "Create", new { parentId = Model.Id }, new { @class = "btn btn-outline-success" })
+                            @Html.ActionLink("Trở lại danh sách nhiệm vụ", "Index", null, new { @class = "btn btn-outline-danger" })
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="creator">
+                                <label for="">Tạo bởi:</label><br />
+                                <span>@ViewBag.FullNameCreatedBy</span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="assignTo">
+                                <label for="">Người thực hiện:</label>
+                                @Html.DropDownList("UserAssign", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="infor1">
+                                <ul style="padding: 0;list-style: none;">
+                                    <li>
+                                        <label for="">Trạng thái:</label>
+                                        @Html.DropDownList("Status", null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <label for="">Tỉ trọng (%):</label>
+                                        @Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="infor2">
+                                <ul style="padding: 0;list-style: none;">
+                                    <li>
+                                        <label for="">Độ ưu tiên:</label>
+                                        @Html.DropDownList("Priority", null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger" })
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <label for="">Chỉ tiêu:</label>
+                                        <div class="container-fluid" style="padding-top:0px;">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    @Html.EditorFor(model => model.Targets, new { htmlAttributes = new { @class = "form-control", @id = "numb" } })
+                                                </div>
+                                                <div class="col-9">
+                                                    @Html.EditorFor(model => model.UnitTargets, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="infor3">
+                                <ul style="padding: 0;list-style: none;">
+                                    <li>
+                                        <label for="">Ngày bắt đầu:</label>
+                                        <input type="date" class="form-control" value="@Model.StartDate.Value.ToString("yyyy-MM-dd")" name="StartDate" />
+                                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <label for="">Ngày kết thúc:</label>
+                                        <input type="date" class="form-control" value="@Model.EndDate.Value.ToString("yyyy-MM-dd")" name="EndDate" />
+                                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="description">
+                                <label for="">Mô tả:</label>
+                                <hr>
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", cols = 106, @rows = 3, @style = "border: none;padding-left: 10px;padding-top: 5px;" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                @*<textarea class="form-control" style="border: none;padding-left: 10px;padding-top: 5px;" name=""
+                                    id="" cols="106" rows="3">Ngày dài tháng nhớ năm thương</textarea>*@
+                            </div>
+                            <div class="discusstion">
+                                <label for="">Bình luận:</label>
+                                <hr>
+                                <textarea class="form-control"
+                                          style="padding-left: 10px;padding-top: 5px; border: solid 1px #80808045;" name="" id="inputComment" cols="106"
+                                          rows="5" wrap="hard"></textarea>
+                                <br>
+                                <button class="btn btn-outline-primary" id="submitCommnet">Đăng bình luận</button>
+                                <button class="btn btn-outline-danger" type="reset" onclick="javascript:eraseText();">Xóa nội dung</button>
+                            </div>
+                            <hr>
+                            <div class="showComment" id="contentComment" style="height:300px; overflow:auto">
+
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-6" style="border-right: solid 5px purple;">
+                            <div class="card">
+                                <div class="card-header p-2">
+                                    <ul class="nav nav-pills">
+                                        <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Chi tiết</a></li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#changePassword" data-toggle="tab">
+                                                Update
+                                                File
+                                            </a>
+                                        </li>
+                                        @*<li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Lịch sử</a></li>*@
+                                    </ul>
+                                </div><!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="activity">
+                                            <!-- Profile Image -->
+                                            <div class="card card-primary card-outline">
+
+                                                <!-- /.card-body -->
+                                            </div>
+                                            <!-- /.card -->
+                                            <!-- About Me Box -->
+                                            <div class="card card-primary">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Chi tiết</h3>
+                                                </div>
+                                                <!-- /.card-header -->
+
+                                                <div class="card-body">
+                                                    <div class="card-body">
+                                                        @if (ViewBag.ParentCurrentTaskId != null && ViewBag.ParentCurrentTaskId > 0)
+                                                        {
+                                                            <strong>Parent:</strong><br>
+                                                            <div class="parentTask">
+                                                                @Html.ActionLink(Parent.Name, "Edit", new { id = (ViewBag.ParentTask as TaskManagement.Areas.Admin.Models.SubTask).Id }, new { @class = "btn btn-xs btn-outline-primary" }) -
+                                                                @if (Parent.Status.ToLower() == "todo")
+                                                                {
+                                                                    <span style="color:#6c757d;" href="">@Parent.Status.ToString()</span>
+                                                                }
+                                                                else if (Parent.Status.ToLower() == "inproress")
+                                                                {
+                                                                    <span style="color:#007bff;" href="">@Parent.Status.ToString()</span>
+                                                                }
+                                                                else if (Parent.Status.ToLower() == "done")
+                                                                {
+                                                                    <span style="color:#28a745;" href="">@Parent.Status.ToString()</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span style="color:#dc3545;" href="">@Parent.Status.ToString()</span>
+                                                                }
+                                                                @if (!String.IsNullOrEmpty(Parent.UpdatedDate.ToString()))
+                                                                {
+                                                                    <span>- Chỉnh sửa lần cuối:</span>
+                                                                }
+                                                                <span>@Parent.UpdatedDate</span>
+                                                            </div>
+                                                            <hr>
+                                                        }
+                                                        @if (ViewBag.SubTasks != null && (ViewBag.SubTasks as List<TaskManagement.Areas.Admin.Models.SubTask>).Count() > 0)
+                                                        {
+                                                            <strong>Child:</strong><br>
+                                                        }
+                                                        @foreach (var item in ViewBag.SubTasks as List<TaskManagement.Areas.Admin.Models.SubTask>)
+                                                        {
+                                                            <div class="childTask">
+                                                                @Html.ActionLink(item.Name, "Edit", new { id = item.Id }, new { @class = "btn btn-xs btn-outline-primary" }) -
+                                                                @if (item.Status.ToLower() == "todo")
+                                                                {
+                                                                    <span style="color:#6c757d;" href="">@item.Status.ToString()</span>
+                                                                }
+                                                                else if (item.Status.ToLower() == "inproress")
+                                                                {
+                                                                    <span style="color:#007bff;" href="">@item.Status.ToString()</span>
+                                                                }
+                                                                else if (item.Status.ToLower() == "done")
+                                                                {
+                                                                    <span style="color:#28a745;" href="">@item.Status.ToString()</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span style="color:#dc3545;" href="">@item.Status.ToString()</span>
+                                                                }
+                                                                @if (!String.IsNullOrEmpty(item.UpdatedDate.ToString()))
+                                                                {
+                                                                    <span>- Chỉnh sửa lần cuối:</span>
+                                                                }
+                                                                <span>@item.UpdatedDate</span>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+
+                                                <!-- /.card-body -->
+                                            </div>
+
+                                            <!-- /.card -->
+                                        </div>
+                                        <!-- /.tab-pane -->
+                                        <div class="tab-pane" id="changePassword">
+                                            <!-- The changePassword -->
+                                            <form>
+                                                <label for="">Upload File:</label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="customFile" name="FilesUpload" multiple>
+                                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </form>
+                                            @*<form action="">*@
+                                            <label for="">Tập tin đính kèm:</label>
+                                            <div class="fileAttachment">
+                                                @if (ViewBag.ListFile != null)
+                                                {
+                                                    foreach (var item in ViewBag.ListFile as List<TaskManagement.Areas.Admin.Models.FileViewModel>)
+                                                    {
+                                                        <a class="download-file1" href="@Url.Action("DownloadFile", "TaskManages", new { fileId = item.Id })" target="_blank">
+                                                            @item.FileName
+                                                        </a>
+                                                        <a href="@Url.Action("DeleteFile", "TaskManages", new { fileId = item.Id })" title="xóa file"><i class="fas fa-trash-alt"></i></a>
+                                                        <br>
+                                                    }
+                                                }
+                                            </div>
+                                            @*</form>*@
+                                        </div>
+                                        <!-- /.tab-pane -->
+                                        @*<div class="tab-pane" id="settings">
+                                                <form class="form-horizontal"></form>
+                                                <label for="">Lịch sử thay đổi</label>
+                                            </div>*@
+                                        <!-- /.tab-pane -->
+                                    </div>
+                                    <!-- /.tab-content -->
+                                </div><!-- /.card-body -->
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    @*<script src="~/Scripts/Customize SignalR/importSignlR.js"></script>*@
+    <script>
+        function eraseText() {
+            document.getElementById("inputComment").value = "";
+        }
+        $(document).ready(function () {
+            $("#numb").on("change", function () {
+                var val = $(this).val();
+                if (val < 1) {
+                    $(this).val(1);
+                }
+            })
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+        });
+    </script>
+    <script>
+        let sessionUserId = '@Session["UserID"]';
+        $(document).ready(function () {
+            
+            console.log("window.commentSignlR",window.commentSignlR);
+            // Reference the auto-generated proxy for the hub.
+            //var chat = $.connection.commentHub;
+            var userInfo = @Html.Raw(Json.Encode(ViewBag.UserInfo));
+
+            GetComment();
+           // Last Commnet Id
+            let lastCommnetId = @Html.Raw(Json.Encode(@ViewBag.LastCommentId));
+            if (lastCommnetId && lastCommnetId[0] == null) lastCommnetId = 0;
+            else if (lastCommnetId && lastCommnetId[0] != null) lastCommnetId = lastCommnetId[0];
+
+            // Create a function that the hub can call back to display messages.
+            window.commentSignlR.client.sendComment = function (userId, taskId, nextCommnetId, fullName, message) {
+                // Add the message to the page.
+                if (taskId == @Model.Id) {
+                    var today = new Date();
+                    var hours = today.getHours();
+                    hours = (hours % 12) || 12;
+                    var minutes = today.getMinutes();
+                    var seconds = today.getSeconds();
+                    var AmOrPm = hours >= 12 ? 'AM' : 'PM';
+                    lastCommnetId = nextCommnetId;
+                     let removeIcon = sessionUserId == userId ? '<span class="deleteComment" id="'+nextCommnetId+'"><i class="fas fa-eraser" style="float: right;"></i></span>' : "";
+                    $('#contentComment').append('<div id="commentId-'+nextCommnetId+'" class="outLine task-comment" style="border: solid 1px #80808045;padding: 10px;border-radius: 5px;margin-top: 10px;"><div class="headerComment"><label for="">'
+                            + fullName + '</label > <span>' + (today.getDate() < 10 ? ("0" + today.getDate()) : today.getDate()) + "-" + (today.getMonth() < 9 ? ("0" + (today.getMonth() + 1)) : (today.getMonth() + 1)) + "-" + today.getFullYear() + " " + (hours < 10 ? ("0" + hours) : hours) + ":" + (minutes < 10 ? ("0" + minutes) : minutes) + ":" + (seconds < 10 ? ("0" + seconds) : seconds) + " " + AmOrPm + '</span>'
+                            + removeIcon
+                            + '</div > <div class="Content" style:"word-wrap:break-word;"><p>'
+                            + htmlEncode(message)
+                            + '</p></div></div>');
+                    $(".showComment").animate({
+                        scrollTop: $('.showComment').prop("scrollHeight")}, 500
+                   );
+                };
+            }
+            window.commentSignlR.client.removeComment = function (taskId, commentId) {
+                if (@Model.Id == taskId) {
+                      customDiv(commentId);
+                }
+            }
+            // Get the user name and store it to prepend to messages.
+            // Set initial focus to message input box.
+            $('#inputComment').focus();
+            // Start the connection.
+
+            //$.connection.hub.start().done(function () {
+            window.hubReady.done(function() {
+                $('#submitCommnet').click(function () {
+                    //console.log(testSS++);
+                    if ($('#inputComment').val()) {
+                       // Call the Send method on the hub.
+                        lastCommnetId++;
+                       window.commentSignlR.server.send(userInfo.UserId, userInfo.TaskId, lastCommnetId, userInfo.FullName, $('#inputComment').val());
+                       // Clear text box and reset focus for next comment.
+                    }
+                    // Post data to save
+                    //if (sessionUserId == userId) {
+                        var jsonData = { "TaskId": userInfo.TaskId, "UserId": userInfo.UserId, "Comment": $('#inputComment').val() };
+                        $.ajax({
+                            type: "POST",
+                            url: "/Comment/SaveComment",
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify(jsonData),
+                            dataType: "json",
+                            success: function (data) {
+                                //alert('success');
+                            },
+                            error: function (data) {
+                                //alert('error');
+                            }
+                    //}
+                        });
+                     $('#inputComment').val('').focus();
+                     return false;
+                });
+                 $('#contentComment').on('click','.deleteComment', function(e) {
+                     console.log(e.currentTarget.id);
+
+                     window.commentSignlR.server.removeComment(@Model.Id, e.currentTarget.id);
+                    jsonData = { "commentId": e.currentTarget.id };
+                          $.ajax({
+                                type: "POST",
+                                url: "/Comment/RemoveComment",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify(jsonData),
+                                dataType: "json",
+                                });
+                     return false;
+                 });
+
+            });
+        });
+        // This optional function html-encodes messages for display in the page.
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+         function GetComment() {
+                 $.ajax({
+                        type: "GET",
+                        url: "/Comment/GetCommentByTaskId?taskId=" + @Model.Id,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                                    //alert('success');
+                            if (data && data.length) {
+                                data.forEach(item => {
+                                    if (item.IsActive == false) {
+                                        $('#contentComment').append('<div id="commentId-'+item.Id+'" class="outLine task-comment" style="border: solid 1px #80808045;padding: 10px;border-radius: 5px;margin-top: 10px;"><p>'
+                                            + 'Tin nhắn đã xóa'
+                                            + '</p></div>');
+                                    } else {
+                                         let removeIcon = sessionUserId == item.UserId ? '<span class="deleteComment" id="'+item.Id+'"><i class="fas fa-eraser" style="float: right;"></i></span>' : "";
+                                            $('#contentComment').append('<div id="commentId-'+item.Id+'" class="outLine task-comment" style="border: solid 1px #80808045;padding: 10px;border-radius: 5px;margin-top: 10px;"><div class="headerComment"><label for="">'
+                                                + item.FullName + '</label > <span>' + item.CreatedDate + '</span>'
+                                                + removeIcon
+                                                + '</div > <div class="Content" style:"word-wrap:break-word;" > <p>'
+                                                + htmlEncode(item.Comment)
+                                                + '</p></div></div>');
+                                    }
+                                });
+                            }
+                                },
+                        error: function (data) {
+                                    //alert('error');
+                                }
+                      });
+        }
+        async function getLastCommentId() {
+            let result;
+            try {
+                result = await  $.ajax({
+                                type: "GET",
+                                url: "/Comment/GetLastCommentId?taskId=" + @Model.Id,
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                });
+
+                return result;
+            } catch (error) {
+                console.error(error);
+            }
+
+        }
+        function customDiv(idComment) {
+             var customDiv = document.createElement("div");
+            customDiv.setAttribute("id", `commentId-${idComment}`);
+            customDiv.setAttribute("class", "outLine task-comment");
+            customDiv.setAttribute("style", "border: solid 1px #80808045;padding: 10px;border-radius: 5px;margin-top: 10px;");
+            var textNode = document.createElement("p");
+            textNode.innerText = "Tin nhắn đã xóa";
+            customDiv.appendChild(textNode);
+            document.getElementById(`commentId-${idComment}`).replaceWith(customDiv);
+        }
+
+    </script>
+}

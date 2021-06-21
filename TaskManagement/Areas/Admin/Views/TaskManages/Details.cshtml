@@ -1,0 +1,94 @@
+﻿@model  TaskManagement.Areas.Admin.Models.TaskManageViewModel
+    @{
+        ViewBag.Title = "Details";
+        Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    }
+
+    <form>
+        <div class="modal-content-test">
+            <div class="card card-primary card-outline">
+            </div>
+            <div class="formLogo" style="text-align: center;">
+                <img src="/Assets/dist/img/VLUlogo.png" style="height: 5rem;" alt="">
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <p style="text-align: center;font-weight: 700;font-size: 20px;">
+                        Chi tiết nhiệm vụ
+                    </p>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="card card-primary card-outline">
+                        </div>
+                        <div class="card card-primary">
+                            <div class="card-body">
+                                <strong><i class="fab fa-buffer mr-1"></i>Tên nhiệm vụ:</strong>
+
+                                <p class="text-muted">
+                                    @Html.DisplayFor(model => model.Name)
+                                </p>
+
+                                <hr>
+                                <strong><i class="fa fa-user-edit mr-1"></i>Người tạo:</strong>
+                                <p class="text-muted">
+                                    @ViewBag.FullNameCreatedBy
+                                </p>
+                                <hr>
+                                <strong><i class="fa fa-calendar-plus mr-1"></i>Ngày bắt đầu:</strong>
+
+                                <p class="text-muted">
+                                    @Html.DisplayFor(model => model.StartDate)
+                                </p>
+
+                                <hr>
+                                <strong><i class="fa fa-calendar-check mr-1"></i>Ngày kêt thúc:</strong>
+
+                                <p class="text-muted">
+                                    @Html.DisplayFor(model => model.EndDate)
+                                </p>
+
+                                <hr>
+                                <strong><i class="fas fa-percentage mr-1"></i>tỷ trọng:</strong>
+                                <p class="text-muted">
+                                    @Html.DisplayFor(model => model.Rate)%
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-clipboard-check mr-1"></i>Chỉ tiêu:</strong>
+                                <p class="text-muted">
+                                    @Html.DisplayFor(model => model.Targets)
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-clipboard-check mr-1"></i>Đơn vị tính:</strong>
+                                <p class="text-muted">
+                                    @Html.DisplayFor(model => model.UnitTargets)
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-sort-amount-up mr-1"></i>Độ ưu tiên:</strong>
+                                <p class="text-muted">
+                                    @Html.DisplayFor(model => model.Priority)
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-tasks mr-1"></i>Trạng thái:</strong>
+                                <p class="text-muted">
+                                    @Html.DisplayFor(model => model.Status)
+                                </p>
+                                <hr>
+                                <strong><i class="fa fa-comment-alt mr-1"></i>Mô tả:</strong>
+
+                                <textarea class="form-control" cols="50" , rows="5" style="text-align: left" disabled>@Html.DisplayFor(model => model.Description)</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" style="text-align: center;">
+                    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-danger" })
+                </div>
+            </div>
+        </div>
+    </form>

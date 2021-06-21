@@ -1,0 +1,81 @@
+﻿@model TaskManagement.Models.Account
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Owner/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông tin tài khoản</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Họ và tên
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            Địa chỉ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            Giới tính
+        </dt>
+
+        @if (Model.Gender == true)
+        {
+            <dd>Nam</dd>
+        }
+        else
+        {
+            <dd>Nữ</dd>
+        }
+        <dt>
+            Thuộc bộ phận
+        </dt>
+
+        @if (Model.DepartmentDisplay == null)
+        {
+            <dd>Chưa có bộ phận</dd>
+        }
+        else
+        {
+            @Html.DisplayFor(User => User.DepartmentDisplay)
+
+        }
+        <dt>
+            Vai trò
+        </dt>
+        <dd>
+            @Html.DisplayFor(User => User.AspNetUser.AspNetRoles.FirstOrDefault().Name)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-outline-info" }) |
+    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-danger" })
+</p>

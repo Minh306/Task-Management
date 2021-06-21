@@ -1,0 +1,38 @@
+﻿@model TaskManagement.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>Chỉnh sửa thông tin cá nhân</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>Password:</dt>
+        <input id="dataSave" />*@
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        <dd>
+            [ @Html.ActionLink("Change Profile", "ChangeProfile")]
+        </dd>
+        @*<dt>External Logins:</dt>
+        <dd>
+            @Model.Logins.Count [
+            @Html.ActionLink("Manage", "ManageLogins") ]
+        </dd>*@
+       
+        
+    </dl>
+</div>

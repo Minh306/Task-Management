@@ -1,0 +1,101 @@
+﻿@model IEnumerable<TaskManagement.Models.UsersOfDepartment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Owner/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header_form" style="text-align:center;">
+    <div style="background-image: linear-gradient(45deg, #360033, #0b8793);color:white; text-align:center;">
+        <h1>Danh sách tài khoản theo bộ phận</h1>
+
+    </div>
+    <br />
+    @*@Html.ActionLink("Thêm tài khoản vào bộ phận", "Create", null, new { @class = "btn btn-sm btn-outline-success" })*@
+
+
+</div>
+<table class="table" id="example">
+    <thead>
+        <tr>
+
+            <th>
+                Email nhân viên
+            </th>
+            <th>
+                Tên bộ phận
+            </th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserId }, new { @class = "btn btn-outline-primary btn-xs view1" }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.UserId }, new { @class = "btn btn-info btn-xs edit1" }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId }, new { @class = "btn btn-outline-danger btn-xs delete2 hide-button" })
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+
+            <th>
+                Email nhân viên
+            </th>
+            <th>
+                Tên bộ phận
+            </th>
+            <th>Chức năng</th>
+        </tr>
+
+    </tfoot>
+</table>
+<div class="toast">
+    <div class="toast-header">
+        Toast Header
+    </div>
+    <div class="toast-body">
+        Some text inside the toast body
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+                responsive: true,
+                //dom: '<"toolbar">frtip',
+                "bAutoWidth": false,
+                "bInfo": false,
+                "oLanguage": {
+                    "sLengthMenu": "Hiển thị _MENU_ dữ liệu",
+                    "sZeroRecords": "Không có dữ liệu",
+                    "sSearch": "Tìm kiếm:",
+                    "oPaginate": {
+                        "sNext": "Trang sau",
+                        "sPrevious": "Trang trước"
+
+                    }
+
+                }
+            });
+        });
+    </script>
+    @*@if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">toastr.success("@ViewBag.Message");</script>
+        }*@
+}

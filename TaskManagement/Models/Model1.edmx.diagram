@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8a25cbf4949f4f43bc38c44ebfd68ad5" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="SEP23Team7Model.Account" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.AspNetRole" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.AspNetUser" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.Company" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.Department" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.MissionInforLeader" Width="1.5" PointX="8.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.MissionMember" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.Mission" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.Task" Width="1.5" PointX="8.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.UserOfMission" Width="1.5" PointX="5.25" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.UsersOfDepartment" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Account_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_MissionInforLeader_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Missions_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Task_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_UserOfMission_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_UsersOfDepartments_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_UsersOfDepartments_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_MissionInforLeader_MissionMember" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_MissionInforLeader_Missions" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Missions_MissionMember" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Task_MissionMember" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Task_Task1" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

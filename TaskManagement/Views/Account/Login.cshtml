@@ -1,0 +1,112 @@
+﻿@using TaskManagement.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Assets/dist/css/adminlte.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/Assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="~/Assets/css_Login.css" />
+</head>
+
+<body class="hold-transition login-page" cz-shortcut-listen="true" style="background-image: url(/Assets/dist/img/background-login.jpg);">
+    <section class="stars-container">
+        <div class="container" style="max-width: 375px; margin-top: 6rem;">
+
+            <div id="stars"></div>
+            <div id="stars2"></div>
+            <div id="stars3"></div>
+            <div class="login-box">
+                <div class="login-logo">
+                    <div class="formLogo" style="text-align: center;">
+                        <img src="~/Assets/dist/img/Mainlogo.png" style="height: 5rem;" alt="">
+                    </div>
+                    <a style="color: white;" href="#">Quản lý công việc</a>
+                </div>
+                <!-- /.login-logo -->
+                <div class="card">
+                    <div class="card-body login-card-body">
+
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="input-group mb-3">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email", @placeholder = "Tên đăng nhập" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-envelope"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @type = "password", @placeholder = "Mật khẩu" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-lock"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-7">
+                                    <div class="checkbox">
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        <label for="remember">
+                                            Nhớ tài khoản
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-5">
+                                    <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Assets/plugins/jquery/jquery.min.js"></script>
+    <!-- AdminLTE App -->
+    <link rel="stylesheet" href="~/Assets/dist/css/adminlte.min.css">
+
+</body>
+
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

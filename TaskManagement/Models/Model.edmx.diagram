@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="beafb7539b11460086c79a3956264ae8" Name="Diagram1">
+        <EntityTypeShape EntityType="SEP23Team7Model.Account" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.AspNetRole" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.AspNetUser" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.Company" Width="2.75" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.Department" Width="1.5" PointX="2.875" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.MissionInforLeader" Width="1.5" PointX="8.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.MissionMember" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.Mission" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.Task" Width="1.5" PointX="8.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.UserOfMission" Width="1.5" PointX="5.25" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP23Team7Model.UsersOfDepartment" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Account_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_MissionInforLeader_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Missions_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Task_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_UserOfMission_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_UsersOfDepartments_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_UsersOfDepartments_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_MissionInforLeader_MissionMember" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_MissionInforLeader_Missions" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Missions_MissionMember" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Task_MissionMember" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.FK_Task_Task1" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP23Team7Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SEP23Team7Model.sysdiagram" Width="1.5" PointX="4.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SEP23Team7Model.FileAttachment" Width="1.5" PointX="8.25" PointY="23" />
+        <EntityTypeShape EntityType="SEP23Team7Model.WorkOfFile" Width="1.5" PointX="10.5" PointY="18" />
+        <AssociationConnector Association="SEP23Team7Model.FK_WorkOfFile_FileAttachment" />
+        <AssociationConnector Association="SEP23Team7Model.FK_WorkOfFile_Task" />
+        <EntityTypeShape EntityType="SEP23Team7Model.UserTask" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SEP23Team7Model.TaskManage" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SEP23Team7Model.TaskRelationship" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SEP23Team7Model.FileUpload" Width="1.5" PointX="8.375" PointY="3.75" />
+        <EntityTypeShape EntityType="SEP23Team7Model.CommentTask" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SEP23Team7Model.Notify" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="SEP23Team7Model.UserNotify" Width="1.5" PointX="10.375" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1739 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SEP23Team7Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="128" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="128" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="128" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="DepartmentDisplay" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" />
+          <Property Name="TwoFactorEnabled" Type="bit" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" />
+          <Property Name="AccessFailedCount" Type="int" />
+        </EntityType>
+        <EntityType Name="CommentTask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskId" Type="int" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Introduction" Type="nvarchar(max)" />
+          <Property Name="Website" Type="nvarchar" MaxLength="100" />
+          <Property Name="NumberOfMembers" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Introduction" Type="nvarchar(max)" />
+          <Property Name="UserMainAssign" Type="nvarchar(max)" />
+          <Property Name="UserMainAssignDisplay" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FileAttachment">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="FileType" Type="nvarchar(max)" />
+          <Property Name="FileUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FileUpload">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskId" Type="int" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="500" />
+          <Property Name="FileType" Type="nvarchar" MaxLength="500" />
+          <Property Name="FileContent" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MissionInforLeader">
+          <Key>
+            <PropertyRef Name="MisionId" />
+          </Key>
+          <Property Name="MisionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar(max)" />
+          <Property Name="GroupInfor" Type="nvarchar(max)" />
+          <Property Name="LeaderStaff" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="MissionMember">
+          <Key>
+            <PropertyRef Name="MissionId" />
+          </Key>
+          <Property Name="MissionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TaskId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Missions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MissionName" Type="nvarchar(max)" />
+          <Property Name="MissionInfor" Type="nvarchar(max)" />
+          <Property Name="CreatorId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="DateDeadLine" Type="datetime" />
+          <Property Name="DateStart" Type="datetime" />
+          <Property Name="DateSubmit" Type="datetime" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="Proportion" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Acceptance" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Notify">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserNorifyId" Type="int" />
+          <Property Name="TaskId" Type="int" />
+          <Property Name="TaskName" Type="nvarchar(max)" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="ChangeBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="ChangeByFullName" Type="nvarchar(max)" />
+          <Property Name="AssignFrom" Type="nvarchar" MaxLength="200" />
+          <Property Name="AssignFromFullName" Type="nvarchar(max)" />
+          <Property Name="AssignTo" Type="nvarchar" MaxLength="200" />
+          <Property Name="AssignToFullName" Type="nvarchar(max)" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Assignedto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DayCreated" Type="datetime" Nullable="false" />
+          <Property Name="DayEnd" Type="datetime" Nullable="false" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DayStart" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="MissionId" Type="uniqueidentifier" />
+          <Property Name="SubTaskId" Type="uniqueidentifier" />
+          <Property Name="Acceptance" Type="nvarchar(max)" />
+          <Property Name="Proportion" Type="int" />
+        </EntityType>
+        <EntityType Name="TaskManage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Rate" Type="float" />
+          <Property Name="Priority" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Targets" Type="int" />
+          <Property Name="UnitTargets" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TaskRelationship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="TaskId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserNotify">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotifyId" Type="int" />
+          <Property Name="AssignFrom" Type="nvarchar" MaxLength="200" />
+          <Property Name="AssignTo" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="200" />
+          <Property Name="OrderId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserOfMission">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="MissionId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MissionId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersOfDepartments">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DepartmentId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DateGetIn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserTask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="200" />
+          <Property Name="TaskId" Type="int" />
+        </EntityType>
+        <EntityType Name="WorkOfFile">
+          <Key>
+            <PropertyRef Name="WOFId" />
+          </Key>
+          <Property Name="TaskId" Type="uniqueidentifier" />
+          <Property Name="FileId" Type="uniqueidentifier" />
+          <Property Name="WOFId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Account_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MissionInforLeader_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="MissionInforLeader" Type="Self.MissionInforLeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MissionInforLeader">
+              <PropertyRef Name="LeaderStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MissionInforLeader_MissionMember">
+          <End Role="MissionMember" Type="Self.MissionMember" Multiplicity="1" />
+          <End Role="MissionInforLeader" Type="Self.MissionInforLeader" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MissionMember">
+              <PropertyRef Name="MissionId" />
+            </Principal>
+            <Dependent Role="MissionInforLeader">
+              <PropertyRef Name="MisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MissionInforLeader_Missions">
+          <End Role="Missions" Type="Self.Missions" Multiplicity="1" />
+          <End Role="MissionInforLeader" Type="Self.MissionInforLeader" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Missions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MissionInforLeader">
+              <PropertyRef Name="MisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Missions_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Missions" Type="Self.Missions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Missions">
+              <PropertyRef Name="CreatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Missions_MissionMember">
+          <End Role="MissionMember" Type="Self.MissionMember" Multiplicity="1" />
+          <End Role="Missions" Type="Self.Missions" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MissionMember">
+              <PropertyRef Name="MissionId" />
+            </Principal>
+            <Dependent Role="Missions">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_MissionMember">
+          <End Role="MissionMember" Type="Self.MissionMember" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MissionMember">
+              <PropertyRef Name="MissionId" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="MissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Task1">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="Task1" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task1">
+              <PropertyRef Name="SubTaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserOfMission_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserOfMission" Type="Self.UserOfMission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserOfMission">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOfFile_FileAttachment">
+          <End Role="FileAttachment" Type="Self.FileAttachment" Multiplicity="0..1" />
+          <End Role="WorkOfFile" Type="Self.WorkOfFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileAttachment">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="WorkOfFile">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOfFile_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="WorkOfFile" Type="Self.WorkOfFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOfFile">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetListNotify_By_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetAllChild_Task_By_ParentId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="parentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetCommentByTaskId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TaskId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GetInfo_To_Send_Notifier" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="taskId" Type="int" Mode="In" />
+          <Parameter Name="assignFrom" Type="nvarchar" Mode="In" />
+          <Parameter Name="assignTo" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GetLastCommentId_By_TaskId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="taskId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_RemoveComment_By_Id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="commentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="SEP23Team7ModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentTask" EntityType="Self.CommentTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileAttachment" EntityType="Self.FileAttachment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileUpload" EntityType="Self.FileUpload" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MissionInforLeader" EntityType="Self.MissionInforLeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MissionMember" EntityType="Self.MissionMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Missions" EntityType="Self.Missions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notify" EntityType="Self.Notify" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskManage" EntityType="Self.TaskManage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskRelationship" EntityType="Self.TaskRelationship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserNotify" EntityType="Self.UserNotify" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserOfMission" EntityType="Self.UserOfMission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersOfDepartments" EntityType="Self.UsersOfDepartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTask" EntityType="Self.UserTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkOfFile" EntityType="Self.WorkOfFile" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_AspNetUsers" Association="Self.FK_Account_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MissionInforLeader_AspNetUsers" Association="Self.FK_MissionInforLeader_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MissionInforLeader" EntitySet="MissionInforLeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MissionInforLeader_MissionMember" Association="Self.FK_MissionInforLeader_MissionMember">
+            <End Role="MissionMember" EntitySet="MissionMember" />
+            <End Role="MissionInforLeader" EntitySet="MissionInforLeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MissionInforLeader_Missions" Association="Self.FK_MissionInforLeader_Missions">
+            <End Role="Missions" EntitySet="Missions" />
+            <End Role="MissionInforLeader" EntitySet="MissionInforLeader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Missions_AspNetUsers" Association="Self.FK_Missions_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Missions" EntitySet="Missions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Missions_MissionMember" Association="Self.FK_Missions_MissionMember">
+            <End Role="MissionMember" EntitySet="MissionMember" />
+            <End Role="Missions" EntitySet="Missions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_AspNetUsers" Association="Self.FK_Task_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_MissionMember" Association="Self.FK_Task_MissionMember">
+            <End Role="MissionMember" EntitySet="MissionMember" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Task1" Association="Self.FK_Task_Task1">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Task1" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserOfMission_AspNetUsers" Association="Self.FK_UserOfMission_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserOfMission" EntitySet="UserOfMission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOfFile_FileAttachment" Association="Self.FK_WorkOfFile_FileAttachment">
+            <End Role="FileAttachment" EntitySet="FileAttachment" />
+            <End Role="WorkOfFile" EntitySet="WorkOfFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOfFile_Task" Association="Self.FK_WorkOfFile_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="WorkOfFile" EntitySet="WorkOfFile" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SEP23Team7Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Account_AspNetUsers" FromRole="Account" ToRole="AspNetUsers" />
+          <Property Name="DepartmentDisplay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" />
+          <Property Name="AccessFailedCount" Type="Int32" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_AspNetUsers" FromRole="AspNetUsers" ToRole="Account" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="MissionInforLeaders" Relationship="Self.FK_MissionInforLeader_AspNetUsers" FromRole="AspNetUsers" ToRole="MissionInforLeader" />
+          <NavigationProperty Name="Missions" Relationship="Self.FK_Missions_AspNetUsers" FromRole="AspNetUsers" ToRole="Missions" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_AspNetUsers" FromRole="AspNetUsers" ToRole="Task" />
+          <NavigationProperty Name="UserOfMissions" Relationship="Self.FK_UserOfMission_AspNetUsers" FromRole="AspNetUsers" ToRole="UserOfMission" />
+          <NavigationProperty Name="UsersOfDepartment" Relationship="Self.FK_UsersOfDepartments_AspNetUsers" FromRole="AspNetUsers" ToRole="UsersOfDepartments" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfMembers" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsersOfDepartments" Relationship="Self.FK_UsersOfDepartments_Department" FromRole="Department" ToRole="UsersOfDepartments" />
+          <Property Name="UserMainAssign" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserMainAssignDisplay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MissionInforLeader">
+          <Key>
+            <PropertyRef Name="MisionId" />
+          </Key>
+          <Property Name="MisionId" Type="Guid" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupInfor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeaderStaff" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_MissionInforLeader_AspNetUsers" FromRole="MissionInforLeader" ToRole="AspNetUsers" />
+          <NavigationProperty Name="MissionMember" Relationship="Self.FK_MissionInforLeader_MissionMember" FromRole="MissionInforLeader" ToRole="MissionMember" />
+          <NavigationProperty Name="Mission" Relationship="Self.FK_MissionInforLeader_Missions" FromRole="MissionInforLeader" ToRole="Missions" />
+        </EntityType>
+        <EntityType Name="MissionMember">
+          <Key>
+            <PropertyRef Name="MissionId" />
+          </Key>
+          <Property Name="MissionId" Type="Guid" Nullable="false" />
+          <Property Name="TaskId" Type="Guid" />
+          <NavigationProperty Name="MissionInforLeader" Relationship="Self.FK_MissionInforLeader_MissionMember" FromRole="MissionMember" ToRole="MissionInforLeader" />
+          <NavigationProperty Name="Mission" Relationship="Self.FK_Missions_MissionMember" FromRole="MissionMember" ToRole="Missions" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_MissionMember" FromRole="MissionMember" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Mission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="MissionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MissionInfor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatorId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="DateDeadLine" Type="DateTime" Precision="3" />
+          <Property Name="DateStart" Type="DateTime" Precision="3" />
+          <Property Name="DateSubmit" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Missions_AspNetUsers" FromRole="Missions" ToRole="AspNetUsers" />
+          <NavigationProperty Name="MissionInforLeader" Relationship="Self.FK_MissionInforLeader_Missions" FromRole="Missions" ToRole="MissionInforLeader" />
+          <NavigationProperty Name="MissionMember" Relationship="Self.FK_Missions_MissionMember" FromRole="Missions" ToRole="MissionMember" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="Proportion" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Acceptance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Assignedto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DayCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DayEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DayStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MissionId" Type="Guid" />
+          <Property Name="SubTaskId" Type="Guid" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Task_AspNetUsers" FromRole="Task" ToRole="AspNetUsers" />
+          <NavigationProperty Name="MissionMember" Relationship="Self.FK_Task_MissionMember" FromRole="Task" ToRole="MissionMember" />
+          <NavigationProperty Name="Task1" Relationship="Self.FK_Task_Task1" FromRole="Task" ToRole="Task1" />
+          <NavigationProperty Name="Task2" Relationship="Self.FK_Task_Task1" FromRole="Task1" ToRole="Task" />
+          <Property Name="Acceptance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Proportion" Type="Int32" />
+          <NavigationProperty Name="WorkOfFiles" Relationship="SEP23Team7Model.FK_WorkOfFile_Task" FromRole="Task" ToRole="WorkOfFile" />
+        </EntityType>
+        <EntityType Name="UserOfMission">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="MissionId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MissionId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_UserOfMission_AspNetUsers" FromRole="UserOfMission" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="UsersOfDepartment">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateGetIn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_UsersOfDepartments_AspNetUsers" FromRole="UsersOfDepartments" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_UsersOfDepartments_Department" FromRole="UsersOfDepartments" ToRole="Department" />
+        </EntityType>
+        <Association Name="FK_Account_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MissionInforLeader_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="MissionInforLeader" Type="Self.MissionInforLeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MissionInforLeader">
+              <PropertyRef Name="LeaderStaff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Missions_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Missions" Type="Self.Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Missions">
+              <PropertyRef Name="CreatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserOfMission_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="UserOfMission" Type="Self.UserOfMission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserOfMission">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersOfDepartments_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="UsersOfDepartments" Type="Self.UsersOfDepartment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersOfDepartments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersOfDepartments_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="UsersOfDepartments" Type="Self.UsersOfDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersOfDepartments">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MissionInforLeader_MissionMember">
+          <End Role="MissionMember" Type="Self.MissionMember" Multiplicity="1" />
+          <End Role="MissionInforLeader" Type="Self.MissionInforLeader" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MissionMember">
+              <PropertyRef Name="MissionId" />
+            </Principal>
+            <Dependent Role="MissionInforLeader">
+              <PropertyRef Name="MisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MissionInforLeader_Missions">
+          <End Role="Missions" Type="Self.Mission" Multiplicity="1" />
+          <End Role="MissionInforLeader" Type="Self.MissionInforLeader" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Missions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MissionInforLeader">
+              <PropertyRef Name="MisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Missions_MissionMember">
+          <End Role="MissionMember" Type="Self.MissionMember" Multiplicity="1" />
+          <End Role="Missions" Type="Self.Mission" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MissionMember">
+              <PropertyRef Name="MissionId" />
+            </Principal>
+            <Dependent Role="Missions">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_MissionMember">
+          <End Role="MissionMember" Type="Self.MissionMember" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MissionMember">
+              <PropertyRef Name="MissionId" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="MissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Task1">
+          <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+          <End Role="Task1" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task1">
+              <PropertyRef Name="SubTaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SEP23Team7Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="MissionInforLeaders" EntityType="Self.MissionInforLeader" />
+          <EntitySet Name="MissionMembers" EntityType="Self.MissionMember" />
+          <EntitySet Name="Missions" EntityType="Self.Mission" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="UserOfMissions" EntityType="Self.UserOfMission" />
+          <EntitySet Name="UsersOfDepartments" EntityType="Self.UsersOfDepartment" />
+          <AssociationSet Name="FK_Account_AspNetUsers" Association="Self.FK_Account_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MissionInforLeader_AspNetUsers" Association="Self.FK_MissionInforLeader_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MissionInforLeader" EntitySet="MissionInforLeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Missions_AspNetUsers" Association="Self.FK_Missions_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Missions" EntitySet="Missions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_AspNetUsers" Association="Self.FK_Task_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserOfMission_AspNetUsers" Association="Self.FK_UserOfMission_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserOfMission" EntitySet="UserOfMissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersOfDepartments_AspNetUsers" Association="Self.FK_UsersOfDepartments_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersOfDepartments" EntitySet="UsersOfDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersOfDepartments_Department" Association="Self.FK_UsersOfDepartments_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="UsersOfDepartments" EntitySet="UsersOfDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MissionInforLeader_MissionMember" Association="Self.FK_MissionInforLeader_MissionMember">
+            <End Role="MissionMember" EntitySet="MissionMembers" />
+            <End Role="MissionInforLeader" EntitySet="MissionInforLeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MissionInforLeader_Missions" Association="Self.FK_MissionInforLeader_Missions">
+            <End Role="Missions" EntitySet="Missions" />
+            <End Role="MissionInforLeader" EntitySet="MissionInforLeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Missions_MissionMember" Association="Self.FK_Missions_MissionMember">
+            <End Role="MissionMember" EntitySet="MissionMembers" />
+            <End Role="Missions" EntitySet="Missions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_MissionMember" Association="Self.FK_Task_MissionMember">
+            <End Role="MissionMember" EntitySet="MissionMembers" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Task1" Association="Self.FK_Task_Task1">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Task1" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="FileAttachments" EntityType="SEP23Team7Model.FileAttachment" />
+          <EntitySet Name="sysdiagrams" EntityType="SEP23Team7Model.sysdiagram" />
+          <EntitySet Name="WorkOfFiles" EntityType="SEP23Team7Model.WorkOfFile" />
+          <AssociationSet Name="FK_WorkOfFile_FileAttachment" Association="SEP23Team7Model.FK_WorkOfFile_FileAttachment">
+            <End Role="FileAttachment" EntitySet="FileAttachments" />
+            <End Role="WorkOfFile" EntitySet="WorkOfFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOfFile_Task" Association="SEP23Team7Model.FK_WorkOfFile_Task">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="WorkOfFile" EntitySet="WorkOfFiles" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SEP23Team7Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SEP23Team7Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="UserTasks" EntityType="SEP23Team7Model.UserTask" />
+          <EntitySet Name="TaskManages" EntityType="SEP23Team7Model.TaskManage" />
+          <EntitySet Name="TaskRelationships" EntityType="SEP23Team7Model.TaskRelationship" />
+          <FunctionImport Name="SP_GetAllChild_Task_By_ParentId" ReturnType="Collection(SEP23Team7Model.SP_GetAllChild_Task_By_ParentId_Result)">
+          <Parameter Name="parentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="FileUploads" EntityType="SEP23Team7Model.FileUpload" />
+          <EntitySet Name="CommentTasks" EntityType="SEP23Team7Model.CommentTask" />
+          <FunctionImport Name="SP_GetCommentByTaskId" ReturnType="Collection(SEP23Team7Model.SP_GetCommentByTaskId_Result)">
+          <Parameter Name="TaskId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetLastCommentId_By_TaskId" ReturnType="Collection(Int32)">
+          <Parameter Name="taskId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_RemoveComment_By_Id">
+          <Parameter Name="commentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetCommentByTaskId1" ReturnType="Collection(SEP23Team7Model.SP_GetCommentByTaskId1_Result)">
+          <Parameter Name="TaskId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Notifies" EntityType="SEP23Team7Model.Notify" />
+          <FunctionImport Name="SP_GetInfo_To_Send_Notifier">
+            <Parameter Name="taskId" Mode="In" Type="Int32" />
+            <Parameter Name="assignFrom" Mode="In" Type="String" />
+            <Parameter Name="assignTo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetInfo_To_Send_Notify">
+            <Parameter Name="taskId" Mode="In" Type="Int32" />
+            <Parameter Name="assignFrom" Mode="In" Type="String" />
+            <Parameter Name="assignTo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetData_To_Send_Notify">
+            <Parameter Name="taskId" Mode="In" Type="Int32" />
+            <Parameter Name="assignFrom" Mode="In" Type="String" />
+            <Parameter Name="assignTo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetData_To_Send_Notifier" ReturnType="Collection(SEP23Team7Model.SP_GetData_To_Send_Notifier_Result)">
+            <Parameter Name="taskId" Mode="In" Type="Int32" />
+            <Parameter Name="assignFrom" Mode="In" Type="String" />
+            <Parameter Name="assignTo" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="UserNotifies" EntityType="SEP23Team7Model.UserNotify" />
+          <FunctionImport Name="GetListNotify_By_User" ReturnType="Collection(SEP23Team7Model.GetListNotify_By_User_Result)">
+          <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetListNotify_By_User1" ReturnType="Collection(SEP23Team7Model.GetListNotify_By_User1_Result)">
+            <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="FileAttachment">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="Guid" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WorkOfFiles" Relationship="SEP23Team7Model.FK_WorkOfFile_FileAttachment" FromRole="FileAttachment" ToRole="WorkOfFile" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WorkOfFile">
+          <Key>
+            <PropertyRef Name="WOFId" />
+          </Key>
+          <Property Name="TaskId" Type="Guid" />
+          <Property Name="FileId" Type="Guid" />
+          <Property Name="WOFId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="FileAttachment" Relationship="SEP23Team7Model.FK_WorkOfFile_FileAttachment" FromRole="WorkOfFile" ToRole="FileAttachment" />
+          <NavigationProperty Name="Task" Relationship="SEP23Team7Model.FK_WorkOfFile_Task" FromRole="WorkOfFile" ToRole="Task" />
+        </EntityType>
+        <Association Name="FK_WorkOfFile_FileAttachment">
+          <End Type="SEP23Team7Model.FileAttachment" Role="FileAttachment" Multiplicity="0..1" />
+          <End Type="SEP23Team7Model.WorkOfFile" Role="WorkOfFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileAttachment">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="WorkOfFile">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOfFile_Task">
+          <End Type="SEP23Team7Model.Task" Role="Task" Multiplicity="0..1" />
+          <End Type="SEP23Team7Model.WorkOfFile" Role="WorkOfFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkOfFile">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="UserTask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TaskId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TaskManage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Double" />
+          <Property Name="Priority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Targets" Type="Int32" />
+          <Property Name="UnitTargets" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TaskRelationship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="TaskId" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="SP_GetAllChild_Task_By_ParentId_Result">
+          <Property Type="Int32" Name="ParentId" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="Int32" Name="TaskId" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="FileUpload">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CommentTask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="SP_GetCommentByTaskId_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="TaskId" Nullable="true" />
+          <Property Type="String" Name="UserId" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_GetCommentByTaskId1_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="TaskId" Nullable="true" />
+          <Property Type="String" Name="UserId" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="128" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="Notify">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignFrom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AssignTo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="TaskName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignFromFullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignToFullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChangeBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ChangeByFullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserNorifyId" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="SP_GetData_To_Send_Notifier_Result">
+          <Property Type="String" Name="AssignFromId" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="AssignFromFullName" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <EntityType Name="UserNotify">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotifyId" Type="Int32" />
+          <Property Name="AssignFrom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AssignTo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OrderId" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="GetListNotify_By_User_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="NotifyId" Nullable="true" />
+          <Property Type="Boolean" Name="IsRead" Nullable="false" />
+          <Property Type="String" Name="UserId" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AssignFrom" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AssignFromFullName" Nullable="true" />
+          <Property Type="String" Name="AssignTo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AssignToFullName" Nullable="true" />
+          <Property Type="String" Name="ChangeBy" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ChangeByFullName" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TaskId" Nullable="true" />
+          <Property Type="String" Name="TaskName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetListNotify_By_User1_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="NotifyId" Nullable="true" />
+          <Property Type="Boolean" Name="IsRead" Nullable="false" />
+          <Property Type="String" Name="UserId" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="OrderId" Nullable="true" />
+          <Property Type="String" Name="AssignFrom" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AssignFromFullName" Nullable="true" />
+          <Property Type="String" Name="AssignTo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AssignToFullName" Nullable="true" />
+          <Property Type="String" Name="ChangeBy" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ChangeByFullName" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TaskId" Nullable="true" />
+          <Property Type="String" Name="TaskName" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SEP23Team7ModelStoreContainer" CdmEntityContainer="SEP23Team7Entities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="SEP23Team7Model.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="DepartmentDisplay" ColumnName="DepartmentDisplay" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="SEP23Team7Model.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="SEP23Team7Model.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="SEP23Team7Model.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="SEP23Team7Model.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="SEP23Team7Model.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="NumberOfMembers" ColumnName="NumberOfMembers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="SEP23Team7Model.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="UserMainAssignDisplay" ColumnName="UserMainAssignDisplay" />
+                <ScalarProperty Name="UserMainAssign" ColumnName="UserMainAssign" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MissionInforLeaders">
+            <EntityTypeMapping TypeName="SEP23Team7Model.MissionInforLeader">
+              <MappingFragment StoreEntitySet="MissionInforLeader">
+                <ScalarProperty Name="MisionId" ColumnName="MisionId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupInfor" ColumnName="GroupInfor" />
+                <ScalarProperty Name="LeaderStaff" ColumnName="LeaderStaff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MissionMembers">
+            <EntityTypeMapping TypeName="SEP23Team7Model.MissionMember">
+              <MappingFragment StoreEntitySet="MissionMember">
+                <ScalarProperty Name="MissionId" ColumnName="MissionId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Missions">
+            <EntityTypeMapping TypeName="SEP23Team7Model.Mission">
+              <MappingFragment StoreEntitySet="Missions">
+                <ScalarProperty Name="Acceptance" ColumnName="Acceptance" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Proportion" ColumnName="Proportion" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MissionName" ColumnName="MissionName" />
+                <ScalarProperty Name="MissionInfor" ColumnName="MissionInfor" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="DateDeadLine" ColumnName="DateDeadLine" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateSubmit" ColumnName="DateSubmit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="SEP23Team7Model.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="Proportion" ColumnName="Proportion" />
+                <ScalarProperty Name="Acceptance" ColumnName="Acceptance" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Assignedto" ColumnName="Assignedto" />
+                <ScalarProperty Name="DayCreated" ColumnName="DayCreated" />
+                <ScalarProperty Name="DayEnd" ColumnName="DayEnd" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DayStart" ColumnName="DayStart" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MissionId" ColumnName="MissionId" />
+                <ScalarProperty Name="SubTaskId" ColumnName="SubTaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserOfMissions">
+            <EntityTypeMapping TypeName="SEP23Team7Model.UserOfMission">
+              <MappingFragment StoreEntitySet="UserOfMission">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MissionId" ColumnName="MissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersOfDepartments">
+            <EntityTypeMapping TypeName="SEP23Team7Model.UsersOfDepartment">
+              <MappingFragment StoreEntitySet="UsersOfDepartments">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DateGetIn" ColumnName="DateGetIn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SEP23Team7Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="FileAttachments">
+            <EntityTypeMapping TypeName="SEP23Team7Model.FileAttachment">
+              <MappingFragment StoreEntitySet="FileAttachment">
+                <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SEP23Team7Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOfFiles">
+            <EntityTypeMapping TypeName="SEP23Team7Model.WorkOfFile">
+              <MappingFragment StoreEntitySet="WorkOfFile">
+                <ScalarProperty Name="WOFId" ColumnName="WOFId" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SEP23Team7Model.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SEP23Team7Model.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SEP23Team7Model.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SEP23Team7Model.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SEP23Team7Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SEP23Team7Model.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SEP23Team7Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SEP23Team7Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SEP23Team7Model.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="UserTasks">
+            <EntityTypeMapping TypeName="SEP23Team7Model.UserTask">
+              <MappingFragment StoreEntitySet="UserTask">
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskManages">
+            <EntityTypeMapping TypeName="SEP23Team7Model.TaskManage">
+              <MappingFragment StoreEntitySet="TaskManage">
+                <ScalarProperty Name="UnitTargets" ColumnName="UnitTargets" />
+                <ScalarProperty Name="Targets" ColumnName="Targets" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskRelationships">
+            <EntityTypeMapping TypeName="SEP23Team7Model.TaskRelationship">
+              <MappingFragment StoreEntitySet="TaskRelationship">
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllChild_Task_By_ParentId" FunctionName="SEP23Team7Model.Store.SP_GetAllChild_Task_By_ParentId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SEP23Team7Model.SP_GetAllChild_Task_By_ParentId_Result">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="FileUploads">
+            <EntityTypeMapping TypeName="SEP23Team7Model.FileUpload">
+              <MappingFragment StoreEntitySet="FileUpload">
+                <ScalarProperty Name="FileContent" ColumnName="FileContent" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentTasks">
+            <EntityTypeMapping TypeName="SEP23Team7Model.CommentTask">
+              <MappingFragment StoreEntitySet="CommentTask">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetLastCommentId_By_TaskId" FunctionName="SEP23Team7Model.Store.SP_GetLastCommentId_By_TaskId" />
+          <FunctionImportMapping FunctionImportName="SP_RemoveComment_By_Id" FunctionName="SEP23Team7Model.Store.SP_RemoveComment_By_Id" />
+          <FunctionImportMapping FunctionImportName="SP_GetCommentByTaskId1" FunctionName="SEP23Team7Model.Store.SP_GetCommentByTaskId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SEP23Team7Model.SP_GetCommentByTaskId1_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Notifies">
+            <EntityTypeMapping TypeName="SEP23Team7Model.Notify">
+              <MappingFragment StoreEntitySet="Notify">
+                <ScalarProperty Name="UserNorifyId" ColumnName="UserNorifyId" />
+                <ScalarProperty Name="ChangeByFullName" ColumnName="ChangeByFullName" />
+                <ScalarProperty Name="ChangeBy" ColumnName="ChangeBy" />
+                <ScalarProperty Name="AssignToFullName" ColumnName="AssignToFullName" />
+                <ScalarProperty Name="AssignFromFullName" ColumnName="AssignFromFullName" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
+                <ScalarProperty Name="AssignFrom" ColumnName="AssignFrom" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetInfo_To_Send_Notifier" FunctionName="SEP23Team7Model.Store.SP_GetInfo_To_Send_Notifier" />
+          <EntitySetMapping Name="UserNotifies">
+            <EntityTypeMapping TypeName="SEP23Team7Model.UserNotify">
+              <MappingFragment StoreEntitySet="UserNotify">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
+                <ScalarProperty Name="AssignFrom" ColumnName="AssignFrom" />
+                <ScalarProperty Name="NotifyId" ColumnName="NotifyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetListNotify_By_User1" FunctionName="SEP23Team7Model.Store.GetListNotify_By_User">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SEP23Team7Model.GetListNotify_By_User1_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NotifyId" ColumnName="NotifyId" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="AssignFrom" ColumnName="AssignFrom" />
+                <ScalarProperty Name="AssignFromFullName" ColumnName="AssignFromFullName" />
+                <ScalarProperty Name="AssignTo" ColumnName="AssignTo" />
+                <ScalarProperty Name="AssignToFullName" ColumnName="AssignToFullName" />
+                <ScalarProperty Name="ChangeBy" ColumnName="ChangeBy" />
+                <ScalarProperty Name="ChangeByFullName" ColumnName="ChangeByFullName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

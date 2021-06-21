@@ -1,0 +1,772 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4"
+       style="background-image: url(/Assets/dist/img/layout.jpg); background-position: center;">
+    <!-- Brand Logo -->
+    <a href="@Url.Action("Index", "Home")" class="brand-link">
+        <img src="~/Assets/dist/img/Teamlogo.png" alt="VLU" class="logo-VLU"
+             style="opacity: .8  ;float: left;line-height: .8;margin-left: .9rem;margin-right: .5rem;margin-top: -3px;max-height: 33px;width: auto;">
+        <span class="brand-text font-weight-light">&nbsp;&nbsp;&nbsp;&nbsp;Task Management</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar os-host os-theme-light os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden os-host-transition">
+        <div class="os-resize-observer-host observed">
+            <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
+        </div>
+        <div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;">
+            <div class="os-resize-observer"></div>
+        </div>
+        <div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 612px;"></div>
+        <div class="os-padding">
+            <div class="os-viewport os-viewport-native-scrollbars-invisible">
+                <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <a href="#">
+                                <img src="~/Assets/dist/img/Admin-face.jpg" class="img-circle elevation-2"
+                                     alt="User Image">
+                            </a>&nbsp;
+                        </div>
+                        <div class="info" style="color: #DADFE4">
+                            <a href="#">
+                                <div class="in">Minh Le &nbsp;&nbsp;</div>
+                            </a>
+                        </div>
+                        <div class="role" style="margin: 0.34rem;
+                    color: #DADFE4;
+                    border-left: 1px solid gray;
+                    padding-left: 1em;
+                    padding-top: 0.05em;"> <span class="fa fa-user-shield"></span>&nbsp;&nbsp;&nbsp;Admin</a></div>
+                    </div>
+
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu"
+                            data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                                  with font-awesome or any other icon font library -->
+                            <li class="nav-item has-treeview menu-open">
+                            </li>
+                            <li class="nav-header">QUẢN LÝ NHIỆM VỤ/MỤC TIÊU</li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <span class="nav-icon oi oi-list"></span>
+                                    <p>
+                                        Danh sách
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-pie"></i>
+                                    <p>
+                                        Thống kê
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <span class="oi oi-bar-chart nav-icon"></span>
+                                            <p>Biểu đồ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <span class="oi oi-clipboard nav-icon"></span>
+                                            <p>Bảng số liệu</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-header">QUẢN LÝ TÀI KHOẢN</li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <span class="nav-icon oi oi-list"></span>
+                                    <p>
+                                        Danh sách
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-header">QUẢN LÝ BỘ PHẬN</li>
+                            <li class="nav-item">
+                                <a href="ListDepartment.html" class="nav-link">
+                                    <span class="nav-icon oi oi-list"></span>
+                                    <p>
+                                        Danh sách
+                                    </p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+            </div>
+        </div>
+        <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden">
+            <div class="os-scrollbar-track">
+                <div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div>
+            </div>
+        </div>
+        <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable os-scrollbar-auto-hidden">
+            <div class="os-scrollbar-track">
+                <div class="os-scrollbar-handle" style="height: 100%; transform: translate(0px, 0px);"></div>
+            </div>
+        </div>
+        <div class="os-scrollbar-corner"></div>
+    </div>
+    <!-- /.sidebar -->
+</aside>
+@*
+    <div class="wrapper">
+        <!-- Thêm tài khoán -->
+        <div id="myModalCreateMission" class="modal-test">
+            <div class="modal-content-test">
+                <div class="formLogo" style="text-align: center;">
+                    <img src="~/Assets/dist/img/logoVLU.png" style="height: 5rem;" alt="">
+                </div>
+
+                <!-- row -->
+                <div class="row">
+                    <div class="col-12">
+                        <p style="text-align: center;font-weight: 700;font-size: 20px;">
+                            Tạo tài khoản mới
+                        </p>
+                        <div class="form-group">
+                            <label for="inputName">Username:</label>
+                            <input type="text" id="inputName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputName">Password:</label>
+                            <input type="password" id="inputPassword" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputName">Nhập lại password:</label>
+                            <input type="password" id="reInputPassword" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Thuộc bộ phận</label>
+                            <select class="form-control select2bs4" style="width: 100%;">
+                                <option selected="selected">Bộ phận x</option>
+                                <option>Bộ phận x</option>
+                                <option>Bộ phận x</option>
+                                <option>Bộ phận x</option>
+                                <option>Bộ phận x</option>
+                                <option>Bộ phận x</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Vai trò</label>
+                            <select class="form-control select2bs4" style="width: 100%;">
+                                <option selected="selected">Trưởng bộ phận</option>
+                                <option>Nhân viên</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" class="button" style="text-align: center;">
+                        <button type="submit" class="btn btn-success  " id="btnCreate">Tạo tài khoản</button>
+                        <button class="btn btn-secondary" id="btnCancel">Huỷ</button>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+        <!-- kết thúc Thêm tài khoán -->
+        <!-- chỉnh sửa vai trò -->
+        <div id="myModalEditMission" class="modal-test">
+            <div class="modal-content-test">
+                <div class="formLogo" style="text-align: center;">
+                    <img src="~/Assets/dist/img/logoVLU.png" style="height: 5rem;" alt="">
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-12">
+                        <p style="text-align: center;font-weight: 700;font-size: 20px;">
+                            Chỉnh sửa thông tin tài khoản
+                        </p>
+                        <div class="form-group">
+                            <label>Thuộc bộ phận</label>
+                            <select class="form-control select2bs4" style="width: 100%;">
+                                <option selected="selected">Bộ phận x</option>
+                                <option>Bộ phận x</option>
+                                <option>Bộ phận x</option>
+                                <option>Bộ phận x</option>
+                                <option>Bộ phận x</option>
+                                <option>Bộ phận x</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Vai trò</label>
+                            <select class="form-control select2bs4" style="width: 100%;">
+                                <option selected="selected">Trưởng bộ phận</option>
+                                <option>Nhân viên</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="text-align: center;">
+                        <button type="submit" class="btn btn-success " id="btnCreate1">Cập nhật</button>
+                        <button class="btn btn-secondary" id="btnCancel1">Huỷ</button>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- kết thúc chỉnh sửa nhiệm vụ/ mục tiêu -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4"
+               style="background-image: url(/Assets/dist/img/layout.jpg); background-position: center;">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="~/Assets/dist/img/Teamlogo.png" alt="VLU" class="logo-VLU"
+                     style="opacity: .8  ;float: left;line-height: .8;margin-left: .9rem;margin-right: .5rem;margin-top: -3px;max-height: 33px;width: auto;">
+                <span class="brand-text font-weight-light">&nbsp;&nbsp;&nbsp;&nbsp;Task Management</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar os-host os-theme-light os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden os-host-transition">
+                <div class="os-resize-observer-host observed">
+                    <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
+                </div>
+                <div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;">
+                    <div class="os-resize-observer"></div>
+                </div>
+                <div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 612px;"></div>
+                <div class="os-padding">
+                    <div class="os-viewport os-viewport-native-scrollbars-invisible">
+                        <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
+                            <!-- Sidebar user panel (optional) -->
+                            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                                <div class="image">
+                                    <a href="#">
+                                        <img src="~/Assets/dist/img/Admin-face.jpg" class="img-circle elevation-2"
+                                             alt="User Image">
+                                    </a>&nbsp;
+                                </div>
+                                <div class="info" style="color: #DADFE4">
+                                    <a href="#">
+                                        <div class="in">Minh Le &nbsp;&nbsp;</div>
+                                    </a>
+                                </div>
+                                <div class="role" style="margin: 0.34rem;
+                    color: #DADFE4;
+                    border-left: 1px solid gray;
+                    padding-left: 1em;
+                    padding-top: 0.05em;"> <span class="fa fa-user-shield"></span>&nbsp;&nbsp;&nbsp;Admin</a></div>
+                            </div>
+
+                            <!-- Sidebar Menu -->
+                            <nav class="mt-2">
+                                <ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu"
+                                    data-accordion="false">
+                                    <!-- Add icons to the links using the .nav-icon class
+                                          with font-awesome or any other icon font library -->
+                                    <li class="nav-item has-treeview menu-open">
+                                    </li>
+                                    <li class="nav-header">QUẢN LÝ NHIỆM VỤ/MỤC TIÊU</li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <span class="nav-icon oi oi-list"></span>
+                                            <p>
+                                                Danh sách
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item has-treeview">
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon fas fa-chart-pie"></i>
+                                            <p>
+                                                Thống kê
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link">
+                                                    <span class="oi oi-bar-chart nav-icon"></span>
+                                                    <p>Biểu đồ</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link">
+                                                    <span class="oi oi-clipboard nav-icon"></span>
+                                                    <p>Bảng số liệu</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-header">QUẢN LÝ TÀI KHOẢN</li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <span class="nav-icon oi oi-list"></span>
+                                            <p>
+                                                Danh sách
+                                            </p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-header">QUẢN LÝ BỘ PHẬN</li>
+                                    <li class="nav-item">
+                                        <a href="ListDepartment.html" class="nav-link">
+                                            <span class="nav-icon oi oi-list"></span>
+                                            <p>
+                                                Danh sách
+                                            </p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                            <!-- /.sidebar-menu -->
+                        </div>
+                    </div>
+                </div>
+                <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden">
+                    <div class="os-scrollbar-track">
+                        <div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div>
+                    </div>
+                </div>
+                <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable os-scrollbar-auto-hidden">
+                    <div class="os-scrollbar-track">
+                        <div class="os-scrollbar-handle" style="height: 100%; transform: translate(0px, 0px);"></div>
+                    </div>
+                </div>
+                <div class="os-scrollbar-corner"></div>
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6"
+                             style="background-image: linear-gradient(45deg, #0A193A, #F25147);border-bottom-right-radius: 53px;">
+                            <h1 style="color: white;">Danh sách tài khoản</h1>
+                        </div>
+                        <div class="col-sm-6"
+                             style="background-image: linear-gradient(45deg, #F25147, #0A193A);border-top-left-radius: 53px;">
+                            <ol class="breadcrumb float-sm-right" style="padding-top: 0.1rem; ">
+                                <li class="breadcrumb-item " style="color: white;"><a href="#">Trang chủ</a></li>
+                                <li class="breadcrumb-item active " style="color: white;">Danh sách tài khoản</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+
+            <div class="container-fluid">
+                <div class="tabel_center">
+
+                    <table id="example" class="display table table-striped" style="width:100%">
+                        <div class="float-left">
+                            <button class="btn btn-sm btn-primary" id="mybtn" style="height: 30.8px; padding: 0 10px;">
+                                <p style="padding-top: inherit; padding-bottom: inherit; margin: auto;">
+                                    Tạo tài khoản mới
+                                </p>
+                            </button>
+                        </div>
+                        <thead>
+                            <tr>
+                                <th><i class="fa fa-user">&nbsp;Username</i></th>
+                                <th><i class="fa fa-signature">&nbsp;Họ và tên</i></th>
+                                <th><i class="fa fa-paper-plane">&nbsp;Email</i></th>
+                                <th><i class="fa fa-dice-d6">&nbsp;Thuộc bộ phận</i></th>
+                                <th><i class="fab fa-battle-net" style="font-weight: bold;">&nbsp;Vai trò</i></th>
+                                <th><i class="fa fa-cogs">&nbsp;Chức năng</i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Nhân viên</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Trưởng bộ phận</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Trưởng bộ phận</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Nhân viên</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Nhân viên</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Nhân viên</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Nhân viên</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Nhân viên</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Nhân viên</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Nhân viên</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>minh.hy306</td>
+                                <td>Lê Quang Minh</td>
+                                <td>minh.hii306@gmail.com</td>
+                                <td>Công nghệ thông tin</td>
+                                <td>Nhân viên</td>
+                                <td class="project-actions">
+                                    <div>
+                                        <a class="btn btn-info btn-xs edit1" id="tooltip-demo" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            <span class="tooltipText-demo" id="edit">
+                                                Chỉnh sửa
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger btn-xs delete2 hide-button" id="tooltip-demo" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            <span class="tooltipText-demo" id="delete">
+                                                Xóa tài khoản
+                                            </span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.content -->
+    </div>
+
+    <script>
+        $('#example').DataTable({
+            responsive: true,
+            dom: '<"toolbar">frtip',
+            "bAutoWidth": false,
+            "bInfo": false,
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Dữ liệu cần tìm không tồn tại",
+                "oPaginate": {
+                    "sNext": "Trang sau",
+                    "sPrevious": "Trang trước"
+                }
+            }
+        });
+        $(function () {
+            $(".select2bs4").select2({
+                theme: "bootstrap4",
+            });
+        });
+
+        var btn = document.getElementById("mybtn");
+
+        var modal = document.getElementById("myModalCreateMission");
+
+        var btnCancel = document.getElementById("btnCancel");
+
+        var btnCreate = document.getElementById("btnCreate");
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        };
+
+        btnCancel.onclick = function () {
+            modal.style.display = "none";
+        };
+        btnCreate.onclick = function () {
+            modal.style.display = "none";
+        };
+
+        $("#reservation").daterangepicker({
+            locale: {
+                format: "DD/MM/YYYY",
+            },
+        });
+
+        var edit1 = document.getElementsByClassName("edit1");
+
+        var modalEditMission = document.getElementById("myModalEditMission");
+
+        var btnCancel1 = document.getElementById("btnCancel1");
+
+        var btnCreate1 = document.getElementById("btnCreate1");
+
+        for (var i = 0; i < edit1.length; i++) {
+            edit1[i].onclick = function (e) {
+                modalEditMission.style.display = "block";
+
+                e.preventDefault();
+                $("#inputName1").val(
+                    $(this).closest("tr").find("td:nth-child(1)").text().trim(" ")
+                );
+                $("#inputDescription1").val(
+                    $(this).closest("tr").find("td:nth-child(8)").text().trim(" ")
+                );
+            };
+        }
+
+        btnCancel1.onclick = function () {
+            modalEditMission.style.display = "none";
+        };
+        btnCreate1.onclick = function () {
+            modalEditMission.style.display = "none";
+        };
+
+        $("#reservation1").daterangepicker({
+            locale: {
+                format: "DD/MM/YYYY",
+            },
+        });
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            } else if (event.target == modalEditMission) {
+                modalEditMission.style.display = "none";
+            }
+        };
+    </script>
+
+*@
